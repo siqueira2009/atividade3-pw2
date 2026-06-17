@@ -22,20 +22,50 @@ function getStatus() {
     }
 }
 
-function getAlunos() {
+function getAluno(id) {
+    try {        
+        let data = fs.readFileSync(JSON_PATH, 'utf-8');
+        data = JSON.parse(data);
     
-    let data = fs.readFileSync(JSON_PATH, 'utf-8');
-    data = JSON.parse(data);
+        const STUDENT = data.find(student => student.id == Number(id));
     
-    return {
-        response: "Request received at GET /alunos",
-        data: data,
+        if (STUDENT) {
+            return {
+                response: "Request received at GET /alunos",
+                data: STUDENT,
+            }
+        } else {
+            throw new Error("Student not found!");
+        }
+    } catch (error) {
+        throw error;
     }
+
+}
+
+function getAlunos() {
+    try {
+        let data = fs.readFileSync(JSON_PATH, 'utf-8');
+        data = JSON.parse(data);
+        
+        if (data) {
+            return {
+                response: "Request received at GET /alunos",
+                data: data,
+            }
+        } else {
+            throw new Error("No students found!")
+        }
+    } catch (error) {
+        throw error;
+    }
+
 }
 
 export {
     getRoot,
     getSobre,
     getStatus,
+    getAluno,
     getAlunos
 }

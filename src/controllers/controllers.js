@@ -8,7 +8,7 @@ async function getRoot(req, res) {
         res.end(JSON.stringify(response));    
     } catch (error) {
         res.statusCode = 401;
-        res.end(JSON.stringify({"Error": error}));
+        res.end(JSON.stringify({"Error": error.message}));
     }
 }
 
@@ -20,7 +20,7 @@ async function getSobre(req, res) {
         res.end(JSON.stringify(response));    
     } catch (error) {
         res.statusCode = 401;
-        res.end(JSON.stringify({"Error": error}));
+        res.end(JSON.stringify({"Error": error.message}));
     }
 }
 
@@ -32,7 +32,19 @@ async function getStatus(req, res) {
         res.end(JSON.stringify(response));    
     } catch (error) {
         res.statusCode = 401;
-        res.end(JSON.stringify({"Error": error}));
+        res.end(JSON.stringify({"Error": error.message}));
+    }
+}
+
+async function getAluno(req, res, id) {
+    try {
+        const response = await services.getAluno(id);
+
+        res.statusCode = 200;
+        res.end(JSON.stringify(response));    
+    } catch (error) {
+        res.statusCode = 404;
+        res.end(JSON.stringify({"Error": error.message}));
     }
 }
 
@@ -44,7 +56,7 @@ async function getAlunos(req, res) {
         res.end(JSON.stringify(response));    
     } catch (error) {
         res.statusCode = 401;
-        res.end(JSON.stringify({"Error": error}));
+        res.end(JSON.stringify({"Error": error.message}));
     }
 }
 
@@ -52,5 +64,6 @@ export {
     getRoot,
     getSobre,
     getStatus,
+    getAluno,
     getAlunos
 }

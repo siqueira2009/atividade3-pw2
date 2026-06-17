@@ -16,4 +16,10 @@ export default function routes(req, res) {
     if (req.url == "/alunos" && req.method == "GET") {
         controllers.getAlunos(req, res)
     }
+
+    if (req.url.includes("/alunos/") && req.method == "GET") {
+        const id = req.url.split('/')[2];
+
+        controllers.getAluno(req, res, id);
+    }
 }
