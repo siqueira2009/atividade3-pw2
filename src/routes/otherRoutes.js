@@ -12,4 +12,10 @@ export default function routesOthers(req, res) {
     if (req.url == "/status" && req.method == "GET") {
         controllers.getStatus(req, res);
     }
+
+    if (req.url.startsWith('/api') && req.method == "GET") {
+        if (req.url.includes("status")) {
+            controllers.getStatus(req, res);
+        }
+    }
 }

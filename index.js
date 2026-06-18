@@ -3,6 +3,7 @@ import http from 'http';
 import routesAlunos from './src/routes/alunosRoutes.js';
 import routesProdutos from './src/routes/produtosRoutes.js';
 import routesOthers from './src/routes/otherRoutes.js';
+import paginaRoutes from './src/routes/paginaRoutes.js';
 
 const server = http.createServer((req, res) => {
     res.statusCode = 200;
@@ -11,6 +12,7 @@ const server = http.createServer((req, res) => {
     routesAlunos(req, res);
     routesProdutos(req, res);
     routesOthers(req, res);
+    paginaRoutes(req, res)
 });
 
 const PORT = 3000;
