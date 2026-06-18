@@ -1,3 +1,4 @@
+// Importa todos os serviços
 import * as services from '../services/alunosServices.js';
 
 // Função para ler body
@@ -16,44 +17,47 @@ const getRequestBody = (req) => {
     });
 };
 
+// Função para pegar TODOS os alunos
 async function getAlunos(req, res) {
-    try {
-        const response = await services.getAlunos();
+    try { // Primeiro tenta...
+        const response = await services.getAlunos(); //... chamar o service de pegar TODOS os alunos
 
-        res.statusCode = 200;
-        res.end(JSON.stringify(response));    
-    } catch (error) {
-        res.statusCode = 404;
-        res.end(JSON.stringify({"Error": error.message}));
+        res.statusCode = 200; // Se conseguir, retorna código 200
+        res.end(JSON.stringify(response)); // E a resposta
+    } catch (error) { // Caso dê erro...
+        res.statusCode = 404; //... retorna código 404
+        res.end(JSON.stringify({"Error": error.message})); // E a mensagem de erro
     }
 }
 
+// Função para pegar UM aluno específico
 async function getAluno(req, res, id) {
-    try {
-        const response = await services.getAluno(id);
+    try { // Primeiro tenta...
+        const response = await services.getAluno(id); // Pegar o aluno específico (usando ID)
 
-        res.statusCode = 200;
-        res.end(JSON.stringify(response));    
-    } catch (error) {
-        res.statusCode = 404;
-        res.end(JSON.stringify({"Error": error.message}));
+        res.statusCode = 200; // Caso consiga, retorna código de 200
+        res.end(JSON.stringify(response)); // E a reposta
+    } catch (error) { // Em caso de erro...
+        res.statusCode = 404; //... retorna código 404
+        res.end(JSON.stringify({"Error": error.message})); // E a mensagem de erro
     }
 }
 
+// Função para adicionar um aluno
 async function postAluno(req, res) {
-    try {
-        const body = await getRequestBody(req);
+    try { // Primeiro tenta...
+        const body = await getRequestBody(req); // Pegar as informações do body
+        const response = await services.postAluno(body); // Tenta chamar o service de postar aluno
 
-        const response = await services.postAluno(body);
-
-        res.statusCode = 201;
-        res.end(JSON.stringify(response));    
-    } catch (error) {
-        res.statusCode = 400;
-        res.end(JSON.stringify({"Error": error.message}));
+        res.statusCode = 201; // Caso consiga, retorna código de 201
+        res.end(JSON.stringify(response)); // Retorna a mensagem
+    } catch (error) { // Caso dê erro...
+        res.statusCode = 400; // Retorna código 400
+        res.end(JSON.stringify({"Error": error.message})); // Retorna a mensagem
     }
 }
 
+// 
 async function putAluno(req, res, id) {
     try {
         const body = await getRequestBody(req);
