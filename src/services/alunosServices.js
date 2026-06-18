@@ -48,6 +48,10 @@ function postAluno(body) {
 
 function getAluno(id) {
     try {        
+        if (!id) {
+            throw new Error("No ID received!");
+        }
+
         let data = fs.readFileSync(JSON_PATH, 'utf-8');
         data = JSON.parse(data);
     
@@ -64,7 +68,6 @@ function getAluno(id) {
     } catch (error) {
         throw error;
     }
-
 }
 
 function putAluno(id, body) {
@@ -90,8 +93,35 @@ function putAluno(id, body) {
         fs.writeFileSync(JSON_PATH, JSON.stringify(data, null, 2), 'utf-8');
 
         return {
-            response: "Request received at POST /alunos",
+            response: "Request received at PUT /alunos",
             data: data,
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+function deleteAluno(id) {
+    try {
+        if (!id) {
+            throw new Error("No ID received!");
+        }
+
+        let data = fs.readFileSync(JSON_PATH, 'utf-8');
+        data = JSON.parse(data);
+
+        const STUDENT_INDEX = data.findIndex(student => student.id == Number(id));
+
+        if (STUDENT_INDEX == -1) {
+            throw new Error(`No student with ID ${id} found!`);
+        }
+
+        data.splice(STUDENT_INDEX, 1);
+
+        fs.writeFileSync(JSON_PATH, JSON.stringify(data, null, 2), 'utf-8');
+
+        return {
+            response: "Request received at DELETE /alunos",
         }
     } catch (error) {
         throw error;
@@ -117,6 +147,7 @@ function getAlunos() {
 
 }
 
+
 export {
     getRoot,
     getSobre,
@@ -124,5 +155,6 @@ export {
     postAluno,
     getAluno,
     putAluno,
+    deleteAluno,
     getAlunos
 }

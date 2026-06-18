@@ -28,6 +28,8 @@ export default function routesAlunos(req, res) {
             controllers.getAluno(req, res, id);
         } else if (req.method == "PUT") {
             controllers.putAluno(req, res, id);
+        } else if (req.method == "DELETE") {
+            controllers.deleteAluno(req, res, id);
         }
 
     }
