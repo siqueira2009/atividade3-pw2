@@ -59,6 +59,18 @@ async function postAluno(req, res) {
 
         const response = await services.postAluno(body);
 
+        res.statusCode = 201;
+        res.end(JSON.stringify(response));    
+    } catch (error) {
+        res.statusCode = 400;
+        res.end(JSON.stringify({"Error": error.message}));
+    }
+}
+
+async function getAluno(req, res, id) {
+    try {
+        const response = await services.getAluno(id);
+
         res.statusCode = 200;
         res.end(JSON.stringify(response));    
     } catch (error) {
@@ -67,9 +79,13 @@ async function postAluno(req, res) {
     }
 }
 
-async function getAluno(req, res, id) {
+async function putAluno(req, res, id) {
     try {
-        const response = await services.getAluno(id);
+        const body = await getRequestBody(req);
+        const response = await services.putAluno(id, body);
+
+        console.log(id)
+        console.log(body)
 
         res.statusCode = 200;
         res.end(JSON.stringify(response));    
@@ -97,5 +113,6 @@ export {
     getStatus,
     postAluno,
     getAluno,
+    putAluno,
     getAlunos
 }
