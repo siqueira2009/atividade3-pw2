@@ -1,4 +1,4 @@
-import * as services from '../services/services.js';
+import * as services from '../services/alunosServices.js';
 
 async function getRoot(req, res) {
     try {

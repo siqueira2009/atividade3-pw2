@@ -1,6 +1,6 @@
-import * as controllers from '../controllers/controllers.js';
+import * as controllers from '../controllers/alunosControllers.js';
 
-export default function routes(req, res) {
+export default function routesAlunos(req, res) {
     if (req.url == "/" && req.method == "GET") {
         controllers.getRoot(req, res);
     }
