@@ -16,10 +16,9 @@ const getRequestBody = (req) => {
     });
 };
 
-
-async function getRoot(req, res) {
+async function getAlunos(req, res) {
     try {
-        const response = await services.getRoot();
+        const response = await services.getAlunos();
 
         res.statusCode = 200;
         res.end(JSON.stringify(response));    
@@ -29,26 +28,14 @@ async function getRoot(req, res) {
     }
 }
 
-async function getSobre(req, res) {
+async function getAluno(req, res, id) {
     try {
-        const response = await services.getSobre();
+        const response = await services.getAluno(id);
 
         res.statusCode = 200;
         res.end(JSON.stringify(response));    
     } catch (error) {
-        res.statusCode = 401;
-        res.end(JSON.stringify({"Error": error.message}));
-    }
-}
-
-async function getStatus(req, res) {
-    try {
-        const response = await services.getStatus();
-
-        res.statusCode = 200;
-        res.end(JSON.stringify(response));    
-    } catch (error) {
-        res.statusCode = 401;
+        res.statusCode = 404;
         res.end(JSON.stringify({"Error": error.message}));
     }
 }
@@ -63,18 +50,6 @@ async function postAluno(req, res) {
         res.end(JSON.stringify(response));    
     } catch (error) {
         res.statusCode = 400;
-        res.end(JSON.stringify({"Error": error.message}));
-    }
-}
-
-async function getAluno(req, res, id) {
-    try {
-        const response = await services.getAluno(id);
-
-        res.statusCode = 200;
-        res.end(JSON.stringify(response));    
-    } catch (error) {
-        res.statusCode = 404;
         res.end(JSON.stringify({"Error": error.message}));
     }
 }
@@ -105,25 +80,10 @@ async function deleteAluno(req, res, id) {
     }
 }
 
-async function getAlunos(req, res) {
-    try {
-        const response = await services.getAlunos();
-
-        res.statusCode = 200;
-        res.end(JSON.stringify(response));    
-    } catch (error) {
-        res.statusCode = 401;
-        res.end(JSON.stringify({"Error": error.message}));
-    }
-}
-
 export {
-    getRoot,
-    getSobre,
-    getStatus,
-    postAluno,
+    getAlunos,
     getAluno,
+    postAluno,
     putAluno,
-    deleteAluno,
-    getAlunos
+    deleteAluno
 }

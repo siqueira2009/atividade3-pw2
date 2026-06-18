@@ -7,11 +7,24 @@ async function getByCategory(req, res, category) {
         res.statusCode = 200;
         res.end(JSON.stringify(response));    
     } catch (error) {
-        res.statusCode = 401;
+        res.statusCode = 404;
+        res.end(JSON.stringify({"Error": error.message}));
+    }
+}
+
+async function getAll(req, res) {
+    try {
+        const response = await services.getAll();
+
+        res.statusCode = 200;
+        res.end(JSON.stringify(response));    
+    } catch (error) {
+        res.statusCode = 404;
         res.end(JSON.stringify({"Error": error.message}));
     }
 }
 
 export {
-    getByCategory
+    getByCategory,
+    getAll
 }

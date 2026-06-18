@@ -23,6 +23,26 @@ function getByCategory(category) {
 
 }
 
+function getAll(category) {
+    try {        
+        let data = fs.readFileSync(JSON_PATH, 'utf-8');
+        data = JSON.parse(data);    
+    
+        if (data) {
+            return {
+                response: "Request received at GET /produtos",
+                data: data,
+            }
+        } else {
+            throw new Error("No products found!");
+        }
+    } catch (error) {
+        throw error;
+    }
+
+}
+
 export {
-    getByCategory
+    getByCategory,
+    getAll
 }
