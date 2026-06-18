@@ -57,33 +57,34 @@ async function postAluno(req, res) {
     }
 }
 
-// 
+// Função que atualiza os dados de um aluno específico
 async function putAluno(req, res, id) {
-    try {
-        const body = await getRequestBody(req);
-        const response = await services.putAluno(id, body);
+    try { // Primeiro tenta...
+        const body = await getRequestBody(req); // Pegar as informações do body
+        const response = await services.putAluno(id, body); // Tenta chamar o service de atualizar aluno
 
-        res.statusCode = 200;
-        res.end(JSON.stringify(response));    
-    } catch (error) {
-        res.statusCode = 400;
-        res.end(JSON.stringify({"Error": error.message}));
+        res.statusCode = 200; // Caso consiga, retorna código 200
+        res.end(JSON.stringify(response)); // Retorna a mensagem
+    } catch (error) { // Caso de erro...
+        res.statusCode = 400; // Retorna código 400
+        res.end(JSON.stringify({"Error": error.message})); // Retorna a mensagem
     }
 }
 
+// Função que deleta um aluno específico
 async function deleteAluno(req, res, id) {
-    try {
-        const body = await getRequestBody(req);
-        const response = await services.deleteAluno(id);
+    try { // Primeiro tenta...
+        const response = await services.deleteAluno(id); // Chamar o service de deletar aluno por ID
 
-        res.statusCode = 204;
-        res.end(JSON.stringify(response));    
-    } catch (error) {
-        res.statusCode = 500;
-        res.end(JSON.stringify({"Error": error.message}));
+        res.statusCode = 204; // Caso consiga, retorna código 204
+        res.end(JSON.stringify(response)); // Retorna a mensagem
+    } catch (error) { // Caso dê erro...
+        res.statusCode = 500; // Retorna código 400
+        res.end(JSON.stringify({"Error": error.message})); // Retorna mensagem
     }
 }
 
+// Exporta as funções para serem utilizadas nas rotas
 export {
     getAlunos,
     getAluno,
