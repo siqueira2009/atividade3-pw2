@@ -8,7 +8,7 @@ async function getRoot(req, res) {
         res.statusCode = 200;
         res.end(JSON.stringify(response));    
     } catch (error) {
-        res.statusCode = 401;
+        res.statusCode = 500;
         res.end(JSON.stringify({"Error": error.message}));
     }
 }
@@ -20,7 +20,7 @@ async function getSobre(req, res) {
         res.statusCode = 200;
         res.end(JSON.stringify(response));    
     } catch (error) {
-        res.statusCode = 401;
+        res.statusCode = 500;
         res.end(JSON.stringify({"Error": error.message}));
     }
 }
@@ -32,7 +32,7 @@ async function getStatus(req, res) {
         res.statusCode = 200;
         res.end(JSON.stringify(response));    
     } catch (error) {
-        res.statusCode = 401;
+        res.statusCode = 500;
         res.end(JSON.stringify({"Error": error.message}));
     }
 }

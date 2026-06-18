@@ -23,7 +23,7 @@ async function getAlunos(req, res) {
         res.statusCode = 200;
         res.end(JSON.stringify(response));    
     } catch (error) {
-        res.statusCode = 401;
+        res.statusCode = 404;
         res.end(JSON.stringify({"Error": error.message}));
     }
 }
@@ -62,7 +62,7 @@ async function putAluno(req, res, id) {
         res.statusCode = 200;
         res.end(JSON.stringify(response));    
     } catch (error) {
-        res.statusCode = 404;
+        res.statusCode = 400;
         res.end(JSON.stringify({"Error": error.message}));
     }
 }
@@ -75,7 +75,7 @@ async function deleteAluno(req, res, id) {
         res.statusCode = 204;
         res.end(JSON.stringify(response));    
     } catch (error) {
-        res.statusCode = 404;
+        res.statusCode = 500;
         res.end(JSON.stringify({"Error": error.message}));
     }
 }
