@@ -1,4 +1,5 @@
 import fs from 'fs';
+import {alunoModels} from '../models/alunoModels.js';
 
 const JSON_PATH = 'src/data/alunos.json';
 
@@ -19,6 +20,29 @@ function getStatus() {
     return {
         response: "Request received at GET /status",
         online: true
+    }
+}
+
+function postAluno(body) {
+    try {
+        if (!body.nome) {
+            throw new Error("No name received!")
+        }
+
+
+        let data = fs.readFileSync(JSON_PATH, 'utf-8');
+        data = JSON.parse(data);
+        const STUDENT = alunoModels(data.length, body.nome);
+        data.push(STUDENT);
+
+        fs.writeFileSync(JSON_PATH, JSON.stringify(data, null, 2), 'utf-8');
+    
+        return {
+            response: "Request received at POST /alunos",
+            data: STUDENT,
+        }
+    } catch (error) {
+        throw error;
     }
 }
 
@@ -66,6 +90,7 @@ export {
     getRoot,
     getSobre,
     getStatus,
+    postAluno,
     getAluno,
     getAlunos
 }
