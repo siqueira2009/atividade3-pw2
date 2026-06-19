@@ -113,8 +113,8 @@ Retorna a lista completa de alunos cadastrados.
 {
   "response": "Request received at GET /alunos",
   "data": [
-    { "id": 0, "nome": "Paulo Elana" },
-    { "id": 1, "nome": "Rafael Cruz" },
+    { "id": 0, "nome": "Paulo Elana", "turma": "2º DS (AMS)" },
+    { "id": 1, "nome": "Rafael Cruz", "turma": "2º DS (AMS)" },
     ...
   ]
 }
@@ -130,7 +130,7 @@ Retorna um aluno específico pelo ID.
 ```json
 {
   "response": "Request received at GET /alunos",
-  "data": { "id": 1, "nome": "Rafael Cruz" }
+  "data": { "id": 1, "nome": "Rafael Cruz", "turma": "2º DS (AMS)" }
 }
 ```
 
@@ -148,17 +148,18 @@ Adiciona um novo aluno à lista.
 **Body (JSON):**
 ```json
 {
-  "nome": "Nome do aluno"
+  "nome": "Nome do aluno",
+  "turma": "Turma do aluno"
 }
 ```
 
-> ⚠️ O campo `nome` é obrigatório. A ausência dele retorna erro `400`.
+> ⚠️ O campo `nome` e `turma` são obrigatórios. A ausência deles retorna erro `400`.
 
 **Resposta de sucesso (201):**
 ```json
 {
   "response": "Request received at POST /alunos",
-  "data": { "id": 5, "nome": "Nome do aluno" }
+  "data": { "id": 5, "nome": "Nome do aluno", "turma": "Turma do aluno" }
 }
 ```
 
@@ -171,7 +172,8 @@ Atualiza o nome de um aluno existente.
 **Body (JSON):**
 ```json
 {
-  "nome": "Novo nome"
+  "nome": "Novo nome",
+  "turma": "Nova turma"
 }
 ```
 

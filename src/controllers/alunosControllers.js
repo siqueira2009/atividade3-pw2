@@ -66,7 +66,7 @@ async function putAluno(req, res, id) {
         res.statusCode = 200; // Caso consiga, retorna código 200
         res.end(JSON.stringify(response)); // Retorna a mensagem
     } catch (error) { // Caso de erro...
-        res.statusCode = 400; // Retorna código 400
+        res.statusCode = 404; // Retorna código 404
         res.end(JSON.stringify({"Error": error.message})); // Retorna a mensagem
     }
 }
@@ -79,7 +79,7 @@ async function deleteAluno(req, res, id) {
         res.statusCode = 204; // Caso consiga, retorna código 204
         res.end(JSON.stringify(response)); // Retorna a mensagem
     } catch (error) { // Caso dê erro...
-        res.statusCode = 500; // Retorna código 400
+        res.statusCode = 404; // Retorna código 404
         res.end(JSON.stringify({"Error": error.message})); // Retorna mensagem
     }
 }

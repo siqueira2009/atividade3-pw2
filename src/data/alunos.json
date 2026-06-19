@@ -1,22 +1,27 @@
 [
   {
     "id": 0,
-    "nome": "Paulo Elana"
+    "nome": "Paulo Elana",
+    "turma": "2º DS (AMS)"
   },
   {
     "id": 1,
-    "nome": "Rafael Cruz"
+    "nome": "Rafael Cruz",
+    "turma": "2º DS (AMS)"
   },
   {
     "id": 2,
-    "nome": "Neymá Junio"
+    "nome": "Neymá Junio",
+    "turma": "2º DS (AMS)"
   },
   {
     "id": 3,
-    "nome": "Michael Poulsen"
+    "nome": "Michael Poulsen",
+    "turma": "2º DS (AMS)"
   },
   {
     "id": 4,
-    "nome": "James Hetfield"
+    "nome": "James Hetfield",
+    "turma": "2º DS (AMS)"
   }
 ]

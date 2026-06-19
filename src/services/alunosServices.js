@@ -48,12 +48,12 @@ function getAluno(id) {
 // Função para adicionar aluno
 function postAluno(body) {
     try { // Primeiro tenta...
-        if (!body.nome) { // Ver se tem nome no body
-            throw new Error("No name received!"); // Se não tiver, retorna erro
+        if (!body.nome || !body.turma) { // Ver se tem nome no body
+            throw new Error("No name or class received!"); // Se não tiver, retorna erro
         }
 
         let data = getData(JSON_PATH); // Os dados são coletados usando a função utilitária
-        const STUDENT = alunoModels(data.length, body.nome); // Cria um aluno usando o modelo, passando ID e nome
+        const STUDENT = alunoModels(data.length, body.nome, body.turma); // Cria um aluno usando o modelo, passando ID e nome
         data.push(STUDENT); // Adiciona esse aluno nos dados
 
         updateData(JSON_PATH, data); // Atualiza o JSON via função utilitária
@@ -70,8 +70,8 @@ function postAluno(body) {
 // Função para atualizar aluno
 function putAluno(id, body) {
     try { // Primeiro tenta...
-        if (!body.nome) { // Ver se tem nome no body
-            throw new Error("No name received!"); // Se não tiver, retorna erro
+        if (!body.nome || !body.turma) { // Ver se tem nome no body
+            throw new Error("No name or class received!"); // Se não tiver, retorna erro
         }
 
         if (!id) { // Ver se tem ID, se não tiver, retorna erro
@@ -85,7 +85,9 @@ function putAluno(id, body) {
             throw new Error(`No student with ID ${id} found!`); // Joga erro
         }
         
-        data[STUDENT_INDEX].nome = body.nome; // Se tiver, atualiza os dados daquele aluno nos dados
+        // Se tiver, atualiza os dados daquele aluno nos dados
+        data[STUDENT_INDEX].nome = body.nome;
+        data[STUDENT_INDEX].turma = body.turma;
     
         updateData(JSON_PATH, data); // Atualiza o JSON via função utilitária
 

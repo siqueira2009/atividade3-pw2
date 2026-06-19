@@ -1,3 +1,6 @@
+// Importa funções utilitárias
+import { getData } from '../utils/dataHandle.js';
+
 const JSON_PATH = 'src/data/produtos.json'; // Caminho do JSON dos produtos
 
 // Função de pegar por categoria
